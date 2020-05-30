@@ -15,3 +15,16 @@ exports.postLike = async (req,res)=>{
         throw err;
     }
 };
+
+exports.readRecipe = async (req,res)=>{
+    const recipe_idx = req.params.recipe_idx;
+    try{
+        const recipe = await recipeModel.readRecipe(recipe_idx);
+        const detailImg = await recipeModel.readImgContent(recipe_idx);
+        // 성공
+        return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.SUCCESS, {recipe , detailImg}));
+    } catch(err){
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).send(util.fail(statusCode.INTERNAL_SERVER_ERROR, err.message));
+        throw err;
+    }
+};
