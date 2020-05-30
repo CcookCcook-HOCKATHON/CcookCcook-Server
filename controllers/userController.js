@@ -3,9 +3,9 @@ const statusCode = require('../modules/statusCode');
 const util = require('../modules/util');
 const userModel = require('../models/userModel');
 
-exports.readUserLike = async (req,res)=>{
+exports.readUserRecipe = async (req,res)=>{
     try{
-        const recipe = await userModel.readUserLike();
+        const recipe = await userModel.readUserRecipe();
 
         // 성공
         return res.status(statusCode.OK).send(util.success(statusCode.OK,responseMessage.SUCCESS, recipe));
